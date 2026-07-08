@@ -1,4 +1,3 @@
-
 # Feature 1: User Authentication
 
 ### US-01 – Register

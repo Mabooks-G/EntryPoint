@@ -2,69 +2,72 @@
 EntryPoint/
 │
 ├── backend/
-│   ├── app.py                 # Flask/FastAPI entry point
+│   ├── app.py                    # FastAPI entry point
+│   │
 │   ├── routes/
 │   │     auth.py
+│   │     users.py
 │   │     applications.py
 │   │     documents.py
-│   │     ai.py
 │   │     admin.py
+│   │
+│   ├── services/
+│   │     ocr_service.py
+│   │     classifier_service.py
+│   │     validation_service.py
+│   │     gemma_service.py
+│   │     requirement_service.py
+│   │     quality_check_service.py
 │   │
 │   ├── models/
 │   │     user.py
 │   │     application.py
 │   │     document.py
 │   │
-│   ├── services/
-│   │     ai_service.py
-│   │     ocr_service.py
-│   │     validation_service.py
-│   │
 │   ├── database/
 │   │     db.py
-│   │
 │
 ├── frontend/
 │   ├── public/
+│   │
 │   └── src/
-│        │
 │        ├── App.js
 │        ├── index.js
 │        │
+│        ├── layouts/
+│        │      MainLayout.jsx
+│        │      AdminLayout.jsx
+│        │
 │        ├── components/
-│        │      Navbar/
-│        │      Sidebar/
-│        │      Footer/
-│        │      ReadinessCard/
-│        │      UploadBox/
-│        │      Notification/
+│        │      Navbar.jsx
+│        │      Sidebar.jsx
+│        │      Footer.jsx
+│        │      UploadBox.jsx
+│        │      ReadinessCard.jsx
+│        │      Notification.jsx
+│        │      DocumentCard.jsx
+│        │      ProgressBar.jsx
 │        │
 │        ├── pages/
-│        │      Login/
-│        │      Register/
-│        │      Dashboard/
-│        │      NewApplication/
-│        │      UploadDocuments/
-│        │      AIAnalysis/
-│        │      Results/
-│        │      Report/
-│        │      AdminDashboard/
+│        │      Login.jsx
+│        │      Register.jsx
+│        │      Dashboard.jsx
+│        │      NewApplication.jsx
+│        │      UploadDocuments.jsx
+│        │      AIAnalysis.jsx
+│        │      Results.jsx
+│        │      Report.jsx
+│        │      AdminDashboard.jsx
 │        │
 │        ├── services/
-│        │      api.js
-│        │      authService.js
-│        │      applicationService.js
+│        │      api.jsx
+│        │      authService.jsx
+│        │      applicationService.jsx
+│        │      documentService.jsx
 │        │
 │        ├── assets/
-│        │      logo.png
-│        │
-│        ├── styles/
-│        │      global.css
-│        │
-│        └── utils/
-│               helpers.js
 │
 ├── README.md
-├── Filestructure.md
-└── Stories.md
+├── FileStructure.md
+├── Stories.md
 ```
