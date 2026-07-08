@@ -1,4 +1,3 @@
-
 # EntryPoint - Functionality
 
 This document describes the responsibility of every file in the project. Each file should have a single responsibility to keep the project modular and easy to maintain.
@@ -526,32 +525,3 @@ Gemma Service
 ↓
 
 Frontend displays results
-
----
-
-# Team Responsibilities
-
-Frontend Developer
-
-- React pages
-- UI
-- Navigation
-
-Backend Developer
-
-- APIs
-- Database
-- Authentication
-
-AI Engineer
-
-- OCR
-- Gemma
-- Validation
-
-Integration
-
-- Connect frontend
-- Connect backend
-- Testing
-- Deployment
