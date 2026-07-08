@@ -19,11 +19,6 @@ EntryPoint/
 │   │     requirement_service.py
 │   │     quality_check_service.py
 │   │
-│   ├── models/
-│   │     user.py
-│   │     application.py
-│   │     document.py
-│   │
 │   ├── database/
 │   │     db.py
 │
@@ -34,36 +29,15 @@ EntryPoint/
 │        ├── App.js
 │        ├── index.js
 │        │
-│        ├── layouts/
-│        │      MainLayout.jsx
-│        │      AdminLayout.jsx
-│        │
-│        ├── components/
-│        │      Navbar.jsx
-│        │      Sidebar.jsx
-│        │      Footer.jsx
-│        │      UploadBox.jsx
-│        │      ReadinessCard.jsx
-│        │      Notification.jsx
-│        │      DocumentCard.jsx
-│        │      ProgressBar.jsx
-│        │
 │        ├── pages/
 │        │      Login.jsx
 │        │      Register.jsx
 │        │      Dashboard.jsx
 │        │      NewApplication.jsx
 │        │      UploadDocuments.jsx
-│        │      AIAnalysis.jsx
-│        │      Results.jsx
-│        │      Report.jsx
+│        │      Ready.jsx
 │        │      AdminDashboard.jsx
-│        │
-│        ├── services/
-│        │      api.jsx
-│        │      authService.jsx
-│        │      applicationService.jsx
-│        │      documentService.jsx
+│        │      Notification.jsx
 │        │
 │        ├── assets/
 │
