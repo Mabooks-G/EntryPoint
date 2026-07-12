@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  backend:
+    build: .
+    container_name: entrypoint-backend
+    ports:
+      - "8000:8000"
+    # Gemma 4 runs via Google Gemini API — no local GPU needed
+    environment:
+      - FIREWORKS_API_KEY=${FIREWORKS_API_KEY}
+    restart: unless-stopped
+    # Uncomment these lines for GPU passthrough on AMD MI300X (ROCm)
+    # devices:
+    #   - /dev/kfd
+    #   - /dev/dri
+    # group_add:
+    #   - video
