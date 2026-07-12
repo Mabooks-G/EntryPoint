@@ -12,6 +12,7 @@ from backend.middleware.auth import get_current_user
 from backend.services.ocr_service import OCRService
 from backend.services.gemma_service import GemmaService
 from backend.services.requirements_service import requirement_applies
+from backend.services.quality_check_service import check_document_quality
 
 logger = logging.getLogger("documents")
 
@@ -85,6 +86,15 @@ async def upload_document(
 
     # Read file contents (for OCR later)
     file_bytes = await file.read()
+
+    # Quality check
+    quality_result = check_document_quality(file_bytes, file.filename, file.content_type)
+    if not quality_result.passed:
+        raise HTTPException(status_code=400, detail={
+            "message": "Document failed quality check.",
+            "errors": quality_result.errors,
+            "warnings": quality_result.warnings,
+        })
 
     # Store in Supabase Storage
     storage_path = f"applications/{application_id}/{uuid.uuid4()}_{file.filename}"
@@ -232,6 +242,17 @@ async def upload_multiple_documents(
             continue
 
         file_bytes = await file.read()
+                
+                # Quality check
+        quality_result = check_document_quality(file_bytes, file.filename, file.content_type)
+        if not quality_result.passed:
+            uploaded_docs.append({
+                "file_name": file.filename,
+                "status": "rejected",
+                "errors": quality_result.errors,
+                "warnings": quality_result.warnings,
+            })
+            continue  # skip to next file instead of crashing the whole batch        
 
         # Store in Supabase Storage
         storage_path = f"applications/{application_id}/{uuid.uuid4()}_{file.filename}"
