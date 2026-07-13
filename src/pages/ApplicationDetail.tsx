@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  applicationsApi, documentsApi, queriesApi, referenceApi,
+  applicationsApi, documentsApi, queriesApi,
   type ApplicationDetail as AppDetailType,
-  type Document, type Query, type Requirement, type ReadinessResult,
+  type Document, type Query, type ReadinessResult,
   type MultiUploadResponse, type AnalysisResult,
 } from "../lib/api";
 import { extractTextFromFiles } from "../lib/ocr";
@@ -42,7 +42,7 @@ export default function ApplicationDetail() {
   const [queryLoading, setQueryLoading] = useState(false);
 
   // Collapsible sections
-  const [showAI, setShowAI] = useState(false);
+  //const showAI = false; // const [showAI, setShowAI] = useState(false);
   const [showUploadAll, setShowUploadAll] = useState(false);
 
   // AI analysis mode modal
@@ -234,9 +234,9 @@ export default function ApplicationDetail() {
   }
 
   // Count how many missing requirements still need files
-  const missingCount = readinessResult
-    ? readinessResult.missing
-    : requirements.filter((r) => (docsByReq[r.requirement_label] || []).length === 0).length;
+  // const missingCount = readinessResult
+  //   ? readinessResult.missing
+  //   : requirements.filter((r) => (docsByReq[r.requirement_label] || []).length === 0).length;
 
   // Show AI-assessed score when available, otherwise the stored DB score
   const displayScore = readinessResult
@@ -295,7 +295,7 @@ export default function ApplicationDetail() {
           <div>
             <h3 className="font-heading text-xl font-bold text-primary">Readiness Score</h3>
             <p className="text-sm text-secondary">
-              Based on {documents.length} document{document.length !== 1 ? "s" : ""} uploaded across {requirements.length} requirements
+              Based on {Array.isArray(documents) ? documents.length : 1} document{Array.isArray(documents) && documents.length !== 1 ? "s" : ""} uploaded across {requirements.length} requirements
             </p>
           </div>
         </div>
@@ -411,7 +411,7 @@ export default function ApplicationDetail() {
           requirements.map((req) => {
             const reqDocs = docsByReq[req.requirement_label] || [];
             const hasDoc = reqDocs.length > 0;
-            const classified = reqDocs.some((d) => d.document_classifications?.length);
+            //const classified = reqDocs.some((d) => d.document_classifications?.length);
             const allValid = reqDocs.every(
               (d) => d.document_classifications?.some((c) => !c.issues?.length)
             );

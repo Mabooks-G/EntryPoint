@@ -1,12 +1,12 @@
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
-  adminApi, referenceApi,
+  adminApi,
   type AdminApplication, type AdminQuery, type AdminUser, type Requirement,
 } from "../lib/api";
 import { COUNTRIES } from "../lib/countries";
 import {
   Loader2, Users, FileText, MessageCircle, ClipboardList, Send,
-  CheckCircle2, AlertCircle, Globe, Search, ArrowUpDown, ChevronDown,
+  CheckCircle2, AlertCircle, Search,
 } from "lucide-react";
 
 type Tab = "applications" | "queries" | "requirements" | "users";

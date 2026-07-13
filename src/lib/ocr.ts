@@ -43,7 +43,8 @@ async function renderPdfToCanvas(file: File): Promise<HTMLCanvasElement[]> {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
     const ctx = canvas.getContext("2d")!;
-    await page.render({ canvasContext: ctx, viewport }).promise;
+    //await page.render({ canvasContext: ctx, viewport }).promise;
+    await page.render({ canvas: ctx.canvas, canvasContext: ctx, viewport }).promise;
     canvases.push(canvas);
   }
 
