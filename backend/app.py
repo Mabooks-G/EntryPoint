@@ -3,6 +3,10 @@
 FastAPI application that routes all API calls through to Supabase
 and handles AI analysis via PaddleOCR + Gemma on AMD MI300X.
 """
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 
 import logging
 
@@ -58,6 +62,14 @@ app.include_router(queries_router)
 app.include_router(queries_admin_router)
 app.include_router(admin_router)
 
+# Serve frontend static files (built React app)
+dist_path = os.path.join(os.path.dirname(__file__), "..", "dist")
+if os.path.exists(dist_path):
+    app.mount("/assets", StaticFiles(directory=os.path.join(dist_path, "assets")), name="assets")
+    
+    @app.exception_handler(404)
+    async def serve_spa(_request: Request, _exc: Exception):
+        return FileResponse(os.path.join(dist_path, "index.html"))
 
 @app.get("/api/health")
 async def health_check():
